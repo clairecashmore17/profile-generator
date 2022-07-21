@@ -6,9 +6,9 @@ const Intern = require('./lib/Intern');
 const generatePage = require('./src/page-template');
 const team = [];
 
-function createEmployee (type) {
+const createEmployee = (type) => {
     if(type ==='Engineer'){
-        inquirer
+       return inquirer
             .prompt([   
                 {
                     type: 'text',
@@ -32,27 +32,24 @@ function createEmployee (type) {
                 },
                 {
                     type: 'confirm',
-                    name: 'addMember',
-                    message: 'Would you like to add another team member?'
+                    name: 'confirmAddMember',
+                    message: 'Would you like to add another team member?',
+                    default: false
                 }
+               
             ])
-            .then(({ name,id,email,github, addMember}) => {
+            .then(({ name,id,email,github,confirmAddMember }) => {
                 const engineer = new Engineer(name,id,email,github);
                 team.push(engineer);
                 console.log('This is your team: ' + team);
-                if(addMember){
-                    console.log('You want to add another member!');
-                    addAnotherMember();
-            
-                } else {
-                    console.log('No members to add');
-                    generatePage(team);
+                if(confirmAddMember){
+                    return addAnotherMember();
                 }
                 
             })
     }
     else if(type === 'Intern'){
-        inquirer
+        return inquirer
         .prompt([   
             {
                 type: 'text',
@@ -76,28 +73,26 @@ function createEmployee (type) {
             },
             {
                 type: 'confirm',
-                name: 'addMember',
-                message: 'Would you like to add another team member?'
+                name: 'confirmAddMember',
+                message: 'Would you like to add another team member?',
+                default: false
             }
+           
         ])
-        .then(({ name,id,email,github, addMember}) => {
+        .then(({ name,id,email,github,confirmAddMember }) => {
             const intern = new Intern(name,id,email,github);
             team.push(intern);
             console.log('This is your team: ' + team);
             // console.log(intern);
-            if(addMember){
-                console.log('You want to add another member!');
-                addAnotherMember();
-        
-            } else {
-                console.log('No members to add');
-                generatePage(team);
+            if(confirmAddMember){
+                return addAnotherMember();
             }
+           
             
         })
     }
     else if(type === 'Manager'){
-        inquirer
+        return inquirer
         .prompt([   
             {
                 type: 'text',
@@ -121,22 +116,19 @@ function createEmployee (type) {
             },
             {
                 type: 'confirm',
-                name: 'addMember',
-                message: 'Would you like to add another team member?'
+                name: 'confirmAddMember',
+                message: 'Would you like to add another team member?',
+                default: false
             }
+           
             
         ])
-        .then(({ name,id,email, addMember}) => {
+        .then(({ name,id,email,confirmAddMember }) => {
             const manager = new Manager(name,id,email);
             team.push(manager);
             console.log('This is your team: ' + team);
-            if(addMember){
-                console.log('You want to add another member!');
-                addAnotherMember();
-        
-            } else {
-                console.log('No members to add');
-                generatePage(team);
+            if(confirmAddMember){
+                return addAnotherMember();
             }
             
             
@@ -145,36 +137,47 @@ function createEmployee (type) {
 
 }
 
-function addAnotherMember(){
-    inquirer
+const addAnotherMember = () =>{
+   return inquirer
     .prompt([
         {
             type: 'list',
             name: 'action',
             message: 'Which kind of member are you adding?',
             choices: ["Engineer", "Intern","I'm finished"]
-        }
+        },
+        
     ])
     .then(({ action }) => {
-        if(action === 'Engineer'){
-            console.log('You are adding an engineer to the team');
-            createEmployee(action);
-        }
-        else if(action === "Intern") {
-            console.log('you are adding an intern');
-            createEmployee(action);
-        }
-        else if(action === "I'm finished"){
-            console.log('you are done making your team');
-            
-            
-            return;
-        }
+        
+       
+            console.log('you are adding another member');
+             if(action === 'Engineer'){
+                console.log('You are adding an engineer to the team');
+                createEmployee(action);
+            }
+            else if(action === "Intern") {
+                console.log('you are adding an intern');
+                createEmployee(action);
+            }
+            else if(action === "I'm finished"){
+                console.log('you are done making your team');
+                
+                
+                return;
+            }
+        
     })
 }
 
 
-createEmployee('Manager')
+createEmployee('Manager');
+generatePage(team)
+    .then(pageHtml => {
+        return console.log('will write to page html file here')
+    })
+
+    
 
 
 
