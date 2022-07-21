@@ -3,9 +3,10 @@ const Engineer = require('./lib/Engineer');
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-
+const generatePage = require('./src/page-template');
 const team = [];
-function createEmployee (type){
+
+function createEmployee (type) {
     if(type ==='Engineer'){
         inquirer
             .prompt([   
@@ -45,7 +46,7 @@ function createEmployee (type){
             
                 } else {
                     console.log('No members to add');
-                    return;
+                    generatePage(team);
                 }
                 
             })
@@ -90,7 +91,7 @@ function createEmployee (type){
         
             } else {
                 console.log('No members to add');
-                return;
+                generatePage(team);
             }
             
         })
@@ -135,7 +136,7 @@ function createEmployee (type){
         
             } else {
                 console.log('No members to add');
-                return;
+                generatePage(team);
             }
             
             
@@ -165,12 +166,15 @@ function addAnotherMember(){
         }
         else if(action === "I'm finished"){
             console.log('you are done making your team');
+            
+            
             return;
         }
     })
 }
 
 
-createEmployee('Manager');
+createEmployee('Manager')
 
-module.exports = team;
+
+
