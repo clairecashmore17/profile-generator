@@ -172,10 +172,7 @@ const addAnotherMember = () =>{
 
 
 createEmployee('Manager');
-generatePage(team)
-    .then(pageHtml => {
-        return console.log('will write to page html file here')
-    })
+
 
     
 
