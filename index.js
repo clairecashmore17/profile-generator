@@ -4,8 +4,16 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const generatePage = require('./src/page-template');
+const {writeFile, copyFile} = require('./utils/generate-site.js');
 const team = [];
 
+
+const mockTeam = [
+    manager = new Manager ('Claire',  1,'cbear',  4),
+    engineer = new Engineer('BOb',2, 'bobmail,', 'bobgit'),
+    intern = new Intern('mil', 3, 'milmail','harvard')
+];
+// console.log(mockTeam);
 function createEmployee (type) {
     if(type ==='Engineer'){
         inquirer
@@ -46,7 +54,8 @@ function createEmployee (type) {
             
                 } else {
                     console.log('No members to add');
-                    generatePage(team);
+                    const pageHTML = generatePage(team);
+                    writeFile(pageHTML);
                 }
                 
             })
@@ -80,8 +89,8 @@ function createEmployee (type) {
                 message: 'Would you like to add another team member?'
             }
         ])
-        .then(({ name,id,email,github, addMember}) => {
-            const intern = new Intern(name,id,email,github);
+        .then(({ name,id,email,school, addMember}) => {
+            const intern = new Intern(name,id,email,school);
             team.push(intern);
             console.log('This is your team: ' + team);
             // console.log(intern);
@@ -91,7 +100,8 @@ function createEmployee (type) {
         
             } else {
                 console.log('No members to add');
-                generatePage(team);
+                const pageHTML = generatePage(team);
+                    writeFile(pageHTML);
             }
             
         })
@@ -126,8 +136,8 @@ function createEmployee (type) {
             }
             
         ])
-        .then(({ name,id,email, addMember}) => {
-            const manager = new Manager(name,id,email);
+        .then(({ name,id,email, addMember, office}) => {
+            const manager = new Manager(name,id,email,office);
             team.push(manager);
             console.log('This is your team: ' + team);
             if(addMember){
@@ -136,7 +146,10 @@ function createEmployee (type) {
         
             } else {
                 console.log('No members to add');
-                generatePage(team);
+                // const pageHTML = generatePage(team);
+                const pageHTML = generatePage(mockTeam);
+
+                writeFile(pageHTML);
             }
             
             
@@ -174,7 +187,8 @@ function addAnotherMember(){
 }
 
 
-createEmployee('Manager')
-
+// createEmployee('Manager')
+const pageHTML = generatePage(mockTeam);
+writeFile(pageHTML);
 
 

@@ -1,17 +1,87 @@
-const generateMember = teamArr =>{
-    return `
-        ${teamArr
-            .map(({ name, email, special}) => {
+const Engineer = require('../lib/Engineer');
+const Manager = require('../lib/Manager');
+const Intern = require('../lib/Intern');
+
+const generateEngineer = teamArr =>{
+    // console.log(teamArr);
+
+    // Defining separate arrays for each type of member by filtering them out from the team with their class
+    let engineerMembers = teamArr.filter(engineer => engineer instanceof Engineer);
+
+
+    console.log(engineerMembers);
+    
+    // If the engineer Members array is not empty, add their sections
+    
+    if(engineerMembers){
+        console.log('engineers array had conten, making html')
+        return `
+        Printing Engineers
+        ${engineerMembers
+            .map(({ name, email, id, github}) => {
                 return `
-                    This is ${name} whos email is ${email} and heres this ${special}
+                    This is ${name} whos email is ${email} whos id is ${id} and github is ${github}
                 `;
             })
             .join('')
         }
     `
+    }
+  
 }
+const generateIntern = teamArr =>{
+    // console.log(teamArr);
+
+    // Defining separate arrays for each type of member by filtering them out from the team with their class
+   
+    let internMembers = teamArr.filter(intern => intern instanceof Intern);
+
+    
+    console.log(internMembers);
+    // If the engineer Members array is not empty, add their sections
+    
+   
+    if(internMembers){
+        console.log('interns array had conten, making html');
+        return `
+        Printing Interns
+        ${internMembers
+            .map(({ name, email, id, school}) => {
+                return `
+                    This is ${name} whos email is ${email} whos id is ${id} and who attended ${school}
+                `;
+            })
+            .join('')
+        }
+        `
+    }
+    
+}
+const generateManager = teamArr =>{
+   
+    // Defining separate arrays for each type of member by filtering them out from the team with their class
+    
+    let managerMembers = teamArr.filter(manager => manager instanceof Manager);
+    console.log(managerMembers);
+    if(managerMembers){
+        console.log('managers array had conten, making html');
+        return `
+        Printing Manager
+        ${managerMembers
+            .map(({ name, email, id, office}) => {
+                return `
+                    This is ${name} whos email is ${email} who's id is ${id} and resides in office number ${office}
+                `;
+            })
+            .join('')
+        }
+    `
+    }
+}
+
 const generatePage = team => {
     console.log('generating page html');
+    // console.log(team);
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -26,7 +96,10 @@ const generatePage = team => {
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        ${generateMember(team)}
+        ${generateManager(team)}
+        ${generateEngineer(team)}
+        ${generateIntern(team)}
+
     </body>
     
     </html>
