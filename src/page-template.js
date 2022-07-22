@@ -16,11 +16,29 @@ const generateEngineer = teamArr =>{
     if(engineerMembers){
         console.log('engineers array had conten, making html')
         return `
-        Printing Engineers
+       
         ${engineerMembers
             .map(({ name, email, id, github}) => {
                 return `
-                    This is ${name} whos email is ${email} whos id is ${id} and github is ${github}
+                <section class="member">
+                <div class = "title-header">
+                    <h2 class="title" >${name}</h2>
+                    <p class="role"> <span class="oi oi-cog"></span> Engineer</p>
+                </div>
+
+                 <!-- Member Info Section -->
+                 <div class="member-info">
+                    <div class="id-section">
+                        <p class ="id">ID: ${id}</p>
+                    </div>
+                    <div class="email-section">
+                        <p class="email">Email: <a href="mailto:${email}"> ${email}</a></p>
+                    </div>
+                    <div class="skill-section">
+                        <p class="skill"> Github:<a href ="https://github.com/${github}">  ${github}</a></p>
+                    </div>
+                </div>
+            </section>
                 `;
             })
             .join('')
@@ -44,11 +62,29 @@ const generateIntern = teamArr =>{
     if(internMembers){
         console.log('interns array had conten, making html');
         return `
-        Printing Interns
+       
         ${internMembers
             .map(({ name, email, id, school}) => {
-                return `
-                    This is ${name} whos email is ${email} whos id is ${id} and who attended ${school}
+               return `
+                <section class="member">
+                <div class = "title-header">
+                    <h2 class="title" >${name}</h2>
+                    <p class="role"><span class="oi oi-book"></span> Intern</p>
+                </div>
+
+                 <!-- Member Info Section -->
+                 <div class="member-info">
+                    <div class="id-section">
+                        <p class ="id">ID: ${id}</p>
+                    </div>
+                    <div class="email-section">
+                        <p class="email">Email: <a href="mailto:${email}"> ${email}</a></p>
+                    </div>
+                    <div class="skill-section">
+                        <p class="skill"> School: ${school}</p>
+                    </div>
+                </div>
+            </section>
                 `;
             })
             .join('')
@@ -66,11 +102,29 @@ const generateManager = teamArr =>{
     if(managerMembers){
         console.log('managers array had conten, making html');
         return `
-        Printing Manager
         ${managerMembers
             .map(({ name, email, id, office}) => {
-                return `
-                    This is ${name} whos email is ${email} who's id is ${id} and resides in office number ${office}
+              
+                 return `
+                <section class="member">
+                <div class = "title-header">
+                    <h2 class="title" >${name}</h2>
+                    <p class="role"><span class="oi oi-book"></span> Manager</p>
+                </div>
+
+                 <!-- Member Info Section -->
+                 <div class="member-info">
+                    <div class="id-section">
+                        <p class ="id">ID: ${id}</p>
+                    </div>
+                    <div class="email-section">
+                        <p class="email">Email: <a href="mailto:${email}"> ${email}</a></p>
+                    </div>
+                    <div class="skill-section">
+                        <p class="skill"> Office Number: ${office}</p>
+                    </div>
+                </div>
+            </section>
                 `;
             })
             .join('')
@@ -90,15 +144,20 @@ const generatePage = team => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Portfolio Demo</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
+        <title>Profile Generatro</title>
+        
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     </head>
     <body>
-        ${generateManager(team)}
-        ${generateEngineer(team)}
-        ${generateIntern(team)}
+        <header>
+            <h1 class="team-title"> Your Team </h1>
+        </header>
+        <main class="page-content">
+            ${generateManager(team)}
+            ${generateEngineer(team)}
+            ${generateIntern(team)}
+        </main>
 
     </body>
     

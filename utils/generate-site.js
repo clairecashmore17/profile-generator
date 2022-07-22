@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Engineer = require('../lib/Engineer');
+
 //creating a function that returns a promise
 const writeFile = fileContent => {
     return new Promise((resolve, reject) => {

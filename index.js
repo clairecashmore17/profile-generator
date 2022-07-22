@@ -8,11 +8,11 @@ const {writeFile, copyFile} = require('./utils/generate-site.js');
 const team = [];
 
 
-const mockTeam = [
-    manager = new Manager ('Claire',  1,'cbear',  4),
-    engineer = new Engineer('BOb',2, 'bobmail,', 'bobgit'),
-    intern = new Intern('mil', 3, 'milmail','harvard')
-];
+// const mockTeam = [
+//     manager = new Manager ('Claire',  1,'cbear',  4),
+//     engineer = new Engineer('BOb',2, 'bobmail,', 'clairecashmore17'),
+//     intern = new Intern('mil', 3, 'milmail','harvard')
+// ];
 // console.log(mockTeam);
 function createEmployee (type) {
     if(type ==='Engineer'){
@@ -21,22 +21,58 @@ function createEmployee (type) {
                 {
                     type: 'text',
                     name: 'name',
-                    message : "What is your engineer's name?"
+                    message : "What is your engineer's name?",
+                    validate: name => {
+                        if(name){
+                            return true;
+                        }
+                        else {
+                            console.log("You must provide an answer!");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type:'number',
                     name: 'id',
-                    message: 'What is  their ID?'
+                    message: 'What is  their ID?',
+                    validate: id => {
+                        if(id){
+                            return true;
+                        }
+                        else {
+                            console.log("You must provide an answer!");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'text',
                     name: 'email',
-                    message: 'What is their email?'
+                    message: 'What is their email?',
+                    validate: email => {
+                        if(email){
+                            return true;
+                        }
+                        else {
+                            console.log("You must provide an answer!");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'text',
                     name: 'github',
-                    message: "What is their Github?"
+                    message: "What is their Github?",
+                    validate: github => {
+                        if(github){
+                            return true;
+                        }
+                        else {
+                            console.log("You must provide an answer!");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'confirm',
@@ -56,6 +92,7 @@ function createEmployee (type) {
                     console.log('No members to add');
                     const pageHTML = generatePage(team);
                     writeFile(pageHTML);
+                    copyFile();
                 }
                 
             })
@@ -66,22 +103,58 @@ function createEmployee (type) {
             {
                 type: 'text',
                 name: 'name',
-                message : "What is your interns's name?"
+                message : "What is your interns's name?",
+                validate: name => {
+                    if(name){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type:'number',
                 name: 'id',
-                message: 'What is  their ID?'
+                message: 'What is  their ID?',
+                validate: id => {
+                    if(id){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'text',
                 name: 'email',
-                message: 'What is their email?'
+                message: 'What is their email?',
+                validate: email => {
+                    if(email){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'text',
                 name: 'school',
-                message: "What school do they attend?"
+                message: "What school do they attend?",
+                validate: school => {
+                    if(school){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'confirm',
@@ -101,7 +174,8 @@ function createEmployee (type) {
             } else {
                 console.log('No members to add');
                 const pageHTML = generatePage(team);
-                    writeFile(pageHTML);
+                writeFile(pageHTML);
+                copyFile();
             }
             
         })
@@ -112,22 +186,58 @@ function createEmployee (type) {
             {
                 type: 'text',
                 name: 'name',
-                message : "What is your team manager's name?"
+                message : "What is your team manager's name?",
+                validate: name => {
+                    if(name){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type:'number',
                 name: 'id',
-                message: 'What is your their ID?'
+                message: 'What is their ID?',
+                validate: id => {
+                    if(id){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'text',
                 name: 'email',
-                message: 'What is their email?'
+                message: 'What is their email?',
+                validate: email=> {
+                    if(email){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type:'number',
                 name: 'office',
-                message: 'What is your their office number?'
+                message: 'What is their office number?',
+                validate: office => {
+                    if(office){
+                        return true;
+                    }
+                    else {
+                        console.log("You must provide an answer!");
+                        return false;
+                    }
+                }
             },
             {
                 type: 'confirm',
@@ -146,10 +256,9 @@ function createEmployee (type) {
         
             } else {
                 console.log('No members to add');
-                // const pageHTML = generatePage(team);
-                const pageHTML = generatePage(mockTeam);
-
+                const pageHTML = generatePage(team);
                 writeFile(pageHTML);
+                copyFile();
             }
             
             
@@ -180,15 +289,16 @@ function addAnotherMember(){
         else if(action === "I'm finished"){
             console.log('you are done making your team');
             
-            
+            const pageHTML = generatePage(team);
+            writeFile(pageHTML);
+            copyFile();
             return;
         }
     })
 }
 
 
-// createEmployee('Manager')
-const pageHTML = generatePage(mockTeam);
-writeFile(pageHTML);
+createEmployee('Manager')
+
 
 
