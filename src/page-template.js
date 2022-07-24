@@ -18,24 +18,24 @@ const generateEngineer = teamArr =>{
         return `
        
         ${engineerMembers
-            .map(({ name, email, id, github}) => {
+            .map(({ engineer }) => {
                 return `
                 <section class="member">
                 <div class = "title-header">
-                    <h2 class="title" >${name}</h2>
+                    <h2 class="title" >${engineer.getName()}</h2>
                     <p class="role"> <span class="oi oi-cog"></span> Engineer</p>
                 </div>
 
                  <!-- Member Info Section -->
                  <div class="member-info">
                     <div class="id-section">
-                        <p class ="id">ID: ${id}</p>
+                        <p class ="id">ID: ${engineer.getId()}</p>
                     </div>
                     <div class="email-section">
-                        <p class="email">Email: <a href="mailto:${email}"> ${email}</a></p>
+                        <p class="email">Email: <a href="mailto:${engineer.getEmail()}"> ${engineer.getEmail()}</a></p>
                     </div>
                     <div class="skill-section">
-                        <p class="skill"> Github:<a href ="https://github.com/${github}">  ${github}</a></p>
+                        <p class="skill"> Github:<a href ="https://github.com/${engineer.getGithub()}">  ${engineer.getGithub()}</a></p>
                     </div>
                 </div>
             </section>
