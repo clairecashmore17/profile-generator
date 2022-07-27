@@ -8,4 +8,12 @@ test('create an intern object', () => {
     expect(intern.id).toEqual(expect.any(Number));
     expect(intern.email).toBe('email@gmail.com');
     expect(intern.school).toBe('harvard');
+
+    const job = intern.getRole();
+    const name = intern.getName();
+    const email = intern.getEmail();
+
+    expect(job).toBe('Intern');
+    expect(name).toBe('Claire');
+    expect(email).toBe('email@gmail.com');
 });

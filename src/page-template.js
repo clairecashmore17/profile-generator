@@ -17,7 +17,7 @@ const generateEngineer = teamArr =>{
         console.log('engineers array had conten, making html')
         return `
        
-        ${engineerMembers
+        ${engineerMembers // deconstructing the engineer
             .map(({ name, email, id, github}) => {
                 return `
                 <section class="member">
@@ -55,7 +55,7 @@ const generateIntern = teamArr =>{
     let internMembers = teamArr.filter(intern => intern instanceof Intern);
 
     
-    console.log(internMembers);
+    // console.log(internMembers);
     // If the engineer Members array is not empty, add their sections
     
    
@@ -93,6 +93,8 @@ const generateIntern = teamArr =>{
     }
     
 }
+
+//Create a manager to print to page
 const generateManager = teamArr =>{
    
     // Defining separate arrays for each type of member by filtering them out from the team with their class
