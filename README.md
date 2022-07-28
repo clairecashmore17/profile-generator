@@ -8,6 +8,9 @@
 ## Description
 Create a profile page for your team by supplying the information for each memeber of the team. Will create a block for each member of your team with links for each role.
 
+What it looked like:
+<img src = "./screenCap.png">
+
 
 ## Table of Contents 
 
